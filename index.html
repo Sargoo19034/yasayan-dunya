@@ -2,12 +2,11 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>🌍 Yaşayan Dünya</title>
+<title>🌍 Yeni Dünya Düzeni</title>
 
 <style>
-
 *{
   box-sizing:border-box;
 }
@@ -16,7 +15,7 @@ body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:#07111c;
-  color:#fff;
+  color:white;
 }
 
 .container{
@@ -26,7 +25,8 @@ body{
 }
 
 h1{
-  margin-bottom:5px;
+  margin:0 0 6px;
+  font-size:32px;
 }
 
 .subtitle{
@@ -38,53 +38,46 @@ h1{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:10px;
-  margin-bottom:20px;
 }
 
 .stat{
   background:#0d1d2b;
   border:1px solid #173149;
-  border-radius:14px;
-  padding:15px;
+  border-radius:15px;
+  padding:16px;
 }
 
 .stat small{
-  color:#8fa6ba;
   display:block;
-  margin-bottom:5px;
+  color:#8fa6ba;
+  margin-bottom:7px;
 }
 
 .stat strong{
-  font-size:22px;
+  font-size:25px;
 }
 
 .controls{
   display:flex;
   gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:20px;
+  margin:20px 0;
 }
 
 .controls button{
   flex:1;
-  min-width:100px;
   border:0;
-  border-radius:12px;
-  padding:14px;
-  background:#1769aa;
+  border-radius:13px;
+  padding:15px 8px;
+  background:#3275bd;
   color:white;
+  font-size:16px;
   font-weight:bold;
-  font-size:15px;
-}
-
-.controls button:active{
-  transform:scale(.97);
 }
 
 .panel{
   background:#0b1926;
   border:1px solid #173149;
-  border-radius:16px;
+  border-radius:17px;
   padding:16px;
   margin-bottom:20px;
 }
@@ -95,16 +88,16 @@ h1{
 
 .person{
   width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  text-align:left;
   border:1px solid #173149;
   background:#0d1d2b;
   color:white;
   border-radius:12px;
   padding:14px;
   margin-bottom:8px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  text-align:left;
 }
 
 .person small{
@@ -114,25 +107,30 @@ h1{
 }
 
 .person strong{
-  color:#62d98b;
+  color:#5ee58a;
 }
 
 .bio{
   line-height:1.8;
-  color:#dce8f1;
 }
 
 .bio button{
-  background:#173149;
-  color:#72c7ff;
   border:0;
   border-radius:6px;
-  padding:3px 7px;
-  margin:2px;
+  padding:4px 8px;
+  background:#173149;
+  color:#70c5ff;
+}
+
+.event{
+  background:#0d1d2b;
+  border-left:3px solid #3989d6;
+  border-radius:8px;
+  padding:10px;
+  margin-bottom:7px;
 }
 
 .bar{
-  width:100%;
   height:10px;
   background:#152533;
   border-radius:20px;
@@ -143,30 +141,8 @@ h1{
 .bar span{
   display:block;
   height:100%;
-  background:#39c879;
+  background:#35c878;
 }
-
-.event{
-  background:#0d1d2b;
-  border-left:3px solid #2196f3;
-  padding:10px;
-  border-radius:8px;
-  margin-bottom:7px;
-  color:#c9d8e5;
-}
-
-.danger{
-  border-left-color:#ff5252;
-}
-
-.clear{
-  background:#182b3b;
-  border:0;
-  color:#fff;
-  border-radius:8px;
-  padding:9px 12px;
-}
-
 </style>
 </head>
 
@@ -174,11 +150,12 @@ h1{
 
 <div class="container">
 
-<h1>🌍 Yaşayan Dünya</h1>
+<h1>🌍 Yeni Dünya Düzeni</h1>
 
 <div class="subtitle">
 Biyoloji + insan yaşamı + medeniyet simülasyonu
 </div>
+
 
 <div class="stats">
 
@@ -189,12 +166,12 @@ Biyoloji + insan yaşamı + medeniyet simülasyonu
 
 <div class="stat">
 <small>Nüfus</small>
-<strong id="pop">0</strong>
+<strong id="population">0</strong>
 </div>
 
 <div class="stat">
 <small>Genetik</small>
-<strong id="gen">0 birey</strong>
+<strong id="genetic">0 birey</strong>
 </div>
 
 <div class="stat">
@@ -204,7 +181,7 @@ Biyoloji + insan yaşamı + medeniyet simülasyonu
 
 <div class="stat">
 <small>Biyosfer</small>
-<strong id="bio">100%</strong>
+<strong id="biosphere">100%</strong>
 </div>
 
 </div>
@@ -212,15 +189,15 @@ Biyoloji + insan yaşamı + medeniyet simülasyonu
 
 <div class="controls">
 
-<button data-y="1">
+<button onclick="advance(1)">
 +1 yıl
 </button>
 
-<button data-y="10">
+<button onclick="advance(10)">
 +10 yıl
 </button>
 
-<button data-y="100">
+<button onclick="advance(100)">
 +100 yıl
 </button>
 
@@ -240,7 +217,7 @@ Biyoloji + insan yaşamı + medeniyet simülasyonu
 
 <h2>🧬 Birey Profili</h2>
 
-<div id="detail">
+<div id="profile">
 Bir kişiye tıklayın.
 </div>
 
@@ -260,165 +237,163 @@ Bir kişiye tıklayın.
 
 <script>
 
-
 /* =========================
    İSİMLER
 ========================= */
 
-const firstNames=[
-  "Deniz",
-  "Duru",
-  "Mert",
-  "Zeynep",
-  "Emir",
-  "Ada",
-  "Efe",
-  "Elif",
-  "Aras",
-  "Mina"
+const names=[
+"Deniz",
+"Duru",
+"Mert",
+"Zeynep",
+"Emir",
+"Ada",
+"Efe",
+"Elif",
+"Aras",
+"Mina"
 ];
-
 
 const jobs=[
-  "Mühendis",
-  "Doktor",
-  "Öğretmen",
-  "Müzisyen",
-  "Çiftçi",
-  "Yazılımcı",
-  "Tasarımcı",
-  "Esnaf"
+"Mühendis",
+"Doktor",
+"Öğretmen",
+"Müzisyen",
+"Çiftçi",
+"Yazılımcı",
+"Tasarımcı",
+"Esnaf"
 ];
 
 
 /* =========================
-   YARDIMCI
+   RASTGELE
 ========================= */
 
-function rnd(a,b){
-  return Math.random()*(b-a)+a;
+function random(min,max){
+return Math.random()*(max-min)+min;
 }
 
 
 /* =========================
-   DÜNYAYI YÜKLE
+   KİŞİ
 ========================= */
 
-let savedWorld=null;
+function createPerson(i){
 
-try{
-  savedWorld=JSON.parse(
-    localStorage.getItem("yasayanDunya")
-  );
-}catch(e){
-  savedWorld=null;
+return{
+
+id:i+1,
+
+name:names[i],
+
+sex:i<5?"Erkek":"Kadın",
+
+age:Math.floor(random(20,38)),
+
+job:jobs[i%jobs.length],
+
+health:100,
+
+energy:Math.floor(random(70,100)),
+
+hunger:Math.floor(random(5,20)),
+
+water:Math.floor(random(5,20)),
+
+money:Math.floor(random(500,2500)),
+
+alive:true,
+
+mother:null,
+
+father:null,
+
+partner:null,
+
+children:[],
+
+generation:0,
+
+dna:{
+eye:["kahverengi","ela","mavi"][i%3],
+hair:["siyah","kahverengi","kumral"][i%3],
+resilience:Math.floor(random(70,100)),
+metabolism:Math.floor(random(80,120))
+}
+
+};
+
 }
 
 
-let world=savedWorld || {
-  year:2026,
-  biosphere:100,
-  people:[],
-  events:[]
+/* =========================
+   DÜNYA
+========================= */
+
+let world={
+
+year:2026,
+
+biosphere:100,
+
+people:[],
+
+events:[]
+
 };
 
 
 /* =========================
-   KİŞİ OLUŞTUR
+   İLK 10 İNSAN
 ========================= */
 
-function person(i){
+for(let i=0;i<10;i++){
 
-  const male=i<5;
-
-  return {
-
-    id:i+1,
-
-    name:firstNames[i],
-
-    sex:male ? "Erkek" : "Kadın",
-
-    age:Math.floor(rnd(19,38)),
-
-    job:jobs[i%jobs.length],
-
-    money:Math.floor(rnd(500,2500)),
-
-    health:100,
-
-    hunger:rnd(5,20),
-
-    water:rnd(5,20),
-
-    energy:rnd(70,100),
-
-    dna:{
-
-      eye:["kahverengi","ela","mavi"][i%3],
-
-      hair:["siyah","kahverengi","kumral"][i%3],
-
-      resilience:Math.round(rnd(70,100)),
-
-      metabolism:Math.round(rnd(80,120))
-
-    },
-
-    cells:1e13,
-
-    memories:[],
-
-    mother:null,
-
-    father:null,
-
-    partner:null,
-
-    children:[],
-
-    generation:0,
-
-    alive:true
-
-  };
+world.people.push(
+createPerson(i)
+);
 
 }
 
 
 /* =========================
-   İLK İNSANLAR
+   KAYDET
 ========================= */
 
-if(!world.people.length){
+function save(){
 
-  world.people=
-    firstNames.map((_,i)=>person(i));
+localStorage.setItem(
+"yeniDunya",
+JSON.stringify(world)
+);
 
 }
 
 
 /* =========================
-   SONRAKİ ID
+   YÜKLE
 ========================= */
 
-let nextId=
-  world.people.length
-  ? Math.max(
-      ...world.people.map(p=>p.id)
-    )+1
-  : 11;
+function load(){
 
+const data=
+localStorage.getItem("yeniDunya");
 
-/* =========================
-   KİŞİ BUL
-========================= */
+if(!data){
+return;
+}
 
-function getPerson(id){
+try{
 
-  return world.people.find(
-    p=>p.id===id
-  );
+world=
+JSON.parse(data);
+
+}catch(e){
+
+console.log(e);
+
+}
 
 }
 
@@ -427,312 +402,18 @@ function getPerson(id){
    OLAY
 ========================= */
 
-function event(text){
+function addEvent(text){
 
-  const message=
-    `${world.year}: ${text}`;
+world.events.unshift(
+world.year+": "+text
+);
 
-  world.events.unshift(message);
+if(world.events.length>50){
 
-  if(world.events.length>100){
-    world.events=
-      world.events.slice(0,100);
-  }
-
-  renderEvents();
-
-  saveWorld();
+world.events=
+world.events.slice(0,50);
 
 }
-
-
-/* =========================
-   OLAYLARI GÖSTER
-========================= */
-
-function renderEvents(){
-
-  const box=
-    document.getElementById("events");
-
-  if(!world.events.length){
-
-    box.innerHTML=
-      "<div class='event'>Henüz olay yok.</div>";
-
-    return;
-
-  }
-
-  box.innerHTML=
-    world.events
-      .map(e=>`
-        <div class="event">
-          ${e}
-        </div>
-      `)
-      .join("");
-
-}
-
-
-/* =========================
-   ÇİFTLEŞME
-========================= */
-
-function tryPair(){
-
-  const adults=
-    world.people.filter(p=>
-      p.alive &&
-      p.age>=18 &&
-      !p.partner
-    );
-
-
-  const males=
-    adults.filter(
-      p=>p.sex==="Erkek"
-    );
-
-
-  const females=
-    adults.filter(
-      p=>p.sex==="Kadın"
-    );
-
-
-  if(!males.length || !females.length){
-    return;
-  }
-
-
-  /*
-    Her yıl %25 ihtimal
-  */
-
-  if(Math.random()>0.25){
-    return;
-  }
-
-
-  const m=
-    males[
-      Math.floor(
-        Math.random()*males.length
-      )
-    ];
-
-
-  const f=
-    females[
-      Math.floor(
-        Math.random()*females.length
-      )
-    ];
-
-
-  m.partner=f.id;
-
-  f.partner=m.id;
-
-
-  event(
-    `❤️ ${m.name} ve ${f.name} bir çift oldu.`
-  );
-
-}
-
-
-/* =========================
-   ÇOCUK DNA
-========================= */
-
-function childDNA(mother,father){
-
-  return{
-
-    eye:
-      Math.random()<0.5
-      ? mother.dna.eye
-      : father.dna.eye,
-
-    hair:
-      Math.random()<0.5
-      ? mother.dna.hair
-      : father.dna.hair,
-
-    resilience:
-      Math.round(
-        (
-          mother.dna.resilience+
-          father.dna.resilience
-        )/2+
-        rnd(-5,5)
-      ),
-
-    metabolism:
-      Math.round(
-        (
-          mother.dna.metabolism+
-          father.dna.metabolism
-        )/2+
-        rnd(-5,5)
-      )
-
-  };
-
-}
-
-
-/* =========================
-   DOĞUM
-========================= */
-
-function tryBirth(){
-
-  const mothers=
-    world.people.filter(p=>
-
-      p.alive &&
-
-      p.sex==="Kadın" &&
-
-      p.age>=20 &&
-
-      p.age<=40 &&
-
-      p.partner
-
-    );
-
-
-  if(!mothers.length){
-    return;
-  }
-
-
-  /*
-    Her yıl %15 doğum ihtimali
-  */
-
-  if(Math.random()>0.15){
-    return;
-  }
-
-
-  const mother=
-    mothers[
-      Math.floor(
-        Math.random()*mothers.length
-      )
-    ];
-
-
-  const father=
-    getPerson(mother.partner);
-
-
-  if(
-    !father ||
-    !father.alive ||
-    father.sex!=="Erkek"
-  ){
-
-    return;
-
-  }
-
-
-  const names=[
-    "Can",
-    "Kerem",
-    "Kaan",
-    "Bora",
-    "Alp",
-    "Derin",
-    "Lina",
-    "Ece",
-    "Naz",
-    "Mira"
-  ];
-
-
-  const child={
-
-    id:nextId++,
-
-    name:
-      names[
-        Math.floor(
-          Math.random()*names.length
-        )
-      ],
-
-    sex:
-      Math.random()<0.5
-      ? "Erkek"
-      : "Kadın",
-
-    age:0,
-
-    job:"Çocuk",
-
-    money:0,
-
-    health:100,
-
-    hunger:rnd(5,15),
-
-    water:rnd(5,15),
-
-    energy:rnd(80,100),
-
-    dna:
-      childDNA(
-        mother,
-        father
-      ),
-
-    cells:1e13,
-
-    memories:[],
-
-    mother:mother.id,
-
-    father:father.id,
-
-    partner:null,
-
-    children:[],
-
-    generation:
-      Math.max(
-        mother.generation,
-        father.generation
-      )+1,
-
-    alive:true
-
-  };
-
-
-  world.people.push(child);
-
-
-  mother.children.push(
-    child.id
-  );
-
-
-  father.children.push(
-    child.id
-  );
-
-
-  event(
-    `👶 ${mother.name} ve ${father.name} bir çocuk sahibi oldu: ${child.name}.`
-  );
 
 }
 
@@ -741,184 +422,151 @@ function tryBirth(){
    PROFİL
 ========================= */
 
-function show(id){
+function showPerson(id){
 
-  const p=
-    getPerson(id);
+const p=
+world.people.find(
+x=>x.id===id
+);
 
+if(!p){
+return;
+}
 
-  if(!p){
-    return;
-  }
+document.getElementById(
+"profile"
+).innerHTML=`
 
+<div class="bio">
 
-  document.getElementById(
-    "detail"
-  ).innerHTML=`
+<h3>🧬 ${p.name}</h3>
 
-    <b>🧬 ${p.name}</b>
+<strong>
+${p.age} yaş ·
+${p.sex} ·
+${p.job}
+</strong>
 
-    <div class="bio">
+<br><br>
 
-      <b>
-        ${p.age} yaş ·
-        ${p.sex} ·
-        ${p.job}
-      </b>
+❤️ Sağlık:
+${Math.round(p.health)}%
 
-      <br><br>
+<br>
 
-      💰 Para:
-      ${Math.round(p.money)} TL
+⚡ Enerji:
+${Math.round(p.energy)}%
 
-      <br>
+<br>
 
-      ❤️ Sağlık:
-      ${Math.round(p.health)}%
+💧 Su:
+${Math.round(p.water)}%
 
-      <br>
+<br>
 
-      💧 Susuzluk:
-      ${Math.round(p.water)}%
+🍽️ Açlık:
+${Math.round(p.hunger)}%
 
-      <br>
+<br>
 
-      🍽️ Açlık:
-      ${Math.round(p.hunger)}%
+💰 Para:
+${Math.round(p.money)} TL
 
-      <br>
+<hr>
 
-      ⚡ Enerji:
-      ${Math.round(p.energy)}%
+👁️ Göz:
+${p.dna.eye}
 
-      <hr style="border-color:#173149">
+<br>
 
-      <b>🧬 DNA</b>
+💇 Saç:
+${p.dna.hair}
 
-      <br>
+<br>
 
-      👁️ Göz:
-      ${p.dna.eye}
+🛡️ Dayanıklılık:
+${p.dna.resilience}
 
-      <br>
+<br>
 
-      💇 Saç:
-      ${p.dna.hair}
+🧪 Metabolizma:
+${p.dna.metabolism}
 
-      <br>
+<hr>
 
-      🧪 Metabolizma:
-      ${p.dna.metabolism}
+👩 Anne:
+${
+p.mother
+?
+getName(p.mother)
+:
+"—"
+}
 
-      <br>
+<br>
 
-      🛡️ Dayanıklılık:
-      ${p.dna.resilience}
+👨 Baba:
+${
+p.father
+?
+getName(p.father)
+:
+"—"
+}
 
-      <br>
+<br>
 
-      🧫 Hücre:
-      ${p.cells.toExponential(2)}
+❤️ Eş:
+${
+p.partner
+?
+getName(p.partner)
+:
+"—"
+}
 
-      <hr style="border-color:#173149">
+<br>
 
-      👨‍👩‍👧 <b>Aile</b>
+🧬 Nesil:
+${p.generation}
 
-      <br>
+<br>
 
-      👩 Anne:
-      ${
-        p.mother
-        ?
-        `<button onclick="show(${p.mother})">
-          ${getPerson(p.mother)?.name || "Bilinmiyor"}
-        </button>`
-        :
-        "—"
-      }
+👶 Çocuk sayısı:
+${p.children.length}
 
-      <br>
+<div class="bar">
 
-      👨 Baba:
-      ${
-        p.father
-        ?
-        `<button onclick="show(${p.father})">
-          ${getPerson(p.father)?.name || "Bilinmiyor"}
-        </button>`
-        :
-        "—"
-      }
+<span style="
+width:${Math.max(
+0,
+Math.min(100,p.health)
+)}%
+"></span>
 
-      <br>
+</div>
 
-      ❤️ Eş:
-      ${
-        p.partner
-        ?
-        `<button onclick="show(${p.partner})">
-          ${getPerson(p.partner)?.name || "Bilinmiyor"}
-        </button>`
-        :
-        "—"
-      }
+</div>
 
-      <br>
+`;
 
-      🧬 Nesil:
-      ${p.generation}
-
-      <br>
-
-      👶 Çocuklar:
-
-      ${
-        p.children.length
-
-        ?
-
-        p.children
-          .map(id=>{
-
-            const child=
-              getPerson(id);
-
-            return child
-              ?
-              `<button onclick="show(${id})">
-                ${child.name}
-              </button>`
-              :
-              "";
-
-          })
-          .join(" ")
-
-        :
-
-        "—"
-      }
+}
 
 
-      <div class="bar">
+/* =========================
+   İSİM BUL
+========================= */
 
-        <span
-          style="
-            width:${Math.max(
-              0,
-              Math.min(
-                100,
-                p.health
-              )
-            )}%
-          "
-        ></span>
+function getName(id){
 
-      </div>
+const p=
+world.people.find(
+x=>x.id===id
+);
 
-    </div>
-
-  `;
+return p
+? p.name
+: "Bilinmiyor";
 
 }
 
@@ -929,350 +577,250 @@ function show(id){
 
 function render(){
 
-  const alive=
-    world.people.filter(
-      p=>p.alive
-    );
+const alive=
+world.people.filter(
+p=>p.alive
+);
 
 
-  document.getElementById(
-    "year"
-  ).textContent=
-    world.year;
+document.getElementById(
+"year"
+).textContent=
+world.year;
 
 
-  document.getElementById(
-    "pop"
-  ).textContent=
-    alive.length;
+document.getElementById(
+"population"
+).textContent=
+alive.length;
 
 
-  document.getElementById(
-    "gen"
-  ).textContent=
-    alive.length+
-    " birey";
+document.getElementById(
+"genetic"
+).textContent=
+alive.length+
+" birey";
 
 
-  const avg=
-    alive.length
-    ?
+let average=0;
 
-    alive.reduce(
-      (sum,p)=>
-        sum+p.energy,
-      0
-    )/alive.length
+if(alive.length){
 
-    :
+average=
+alive.reduce(
+(sum,p)=>sum+p.energy,
+0
+)/alive.length;
 
-    0;
+}
 
-
-  document.getElementById(
-    "energy"
-  ).textContent=
-    Math.round(avg)+"%";
+document.getElementById(
+"energy"
+).textContent=
+Math.round(average)+"%";
 
 
-  document.getElementById(
-    "bio"
-  ).textContent=
-    Math.round(
-      world.biosphere
-    )+"%";
+document.getElementById(
+"biosphere"
+).textContent=
+Math.round(
+world.biosphere
+)+"%";
 
 
-  document.getElementById(
-    "people"
-  ).innerHTML=
+document.getElementById(
+"people"
+).innerHTML=
+alive.map(p=>`
 
-    alive.map(p=>`
+<button
+class="person"
+onclick="showPerson(${p.id})"
+>
 
-      <button
-        class="person"
-        data-id="${p.id}"
-      >
+<span>
 
-        <span>
+👤 ${p.name}
 
-          👤 ${p.name}
+<small>
+${p.age} yaş · ${p.job}
+</small>
 
-          <small>
-            ${p.age} yaş ·
-            ${p.job}
-          </small>
+</span>
 
-        </span>
+<strong>
+${Math.round(p.health)}%
+</strong>
 
-        <strong>
-          ${Math.round(p.health)}%
-        </strong>
+</button>
 
-      </button>
-
-    `).join("");
+`).join("");
 
 
-  document
-    .querySelectorAll(".person")
-    .forEach(button=>{
+document.getElementById(
+"events"
+).innerHTML=
+world.events.length
+?
+world.events.map(e=>`
+<div class="event">
+${e}
+</div>
+`).join("")
+:
+`<div class="event">
+🌍 Dünya henüz yeni oluştu.
+</div>`;
 
-      button.onclick=()=>{
-
-        show(
-          Number(
-            button.dataset.id
-          )
-        );
-
-      };
-
-    });
-
-
-  renderEvents();
 
 }
 
 
 /* =========================
-   ZAMAN İLERLET
+   ZAMAN
 ========================= */
 
-function advance(n){
+function advance(years){
 
-  for(
-    let y=0;
-    y<n;
-    y++
-  ){
+for(
+let i=0;
+i<years;
+i++
+){
 
-    world.year++;
-
-
-    /*
-      BİYOFER
-    */
-
-    world.biosphere=
-      Math.max(
-        0,
-        Math.min(
-          100,
-          world.biosphere+
-          rnd(-0.3,0.2)
-        )
-      );
+world.year++;
 
 
-    /*
-      İNSANLAR
-    */
+/* BİREYLER */
 
-    world.people
-      .filter(
-        p=>p.alive
-      )
-      .forEach(p=>{
+world.people
+.filter(p=>p.alive)
+.forEach(p=>{
 
-        p.age++;
+p.age++;
 
+p.hunger=
+Math.min(
+100,
+p.hunger+
+random(5,12)
+);
 
-        p.hunger=
-          Math.min(
-            100,
-            p.hunger+
-            rnd(7,13)
-          );
+p.water=
+Math.min(
+100,
+p.water+
+random(4,10)
+);
 
+p.energy=
+Math.max(
+0,
+p.energy-
+random(1,5)
+);
 
-        p.water=
-          Math.min(
-            100,
-            p.water+
-            rnd(6,12)
-          );
+if(
+p.hunger>80 ||
+p.water>85
+){
 
+p.health-=
+random(1,3);
 
-        p.energy=
-          Math.max(
-            0,
-            p.energy-
-            rnd(2,6)+
-            (
-              p.hunger<35
-              ? 2
-              : 0
-            )
-          );
+}else{
 
+p.health+=
+random(.1,.5);
 
-        if(
-          p.hunger>75 ||
-          p.water>80
-        ){
+}
 
-          p.health-=
-            rnd(1,4);
-
-        }else{
-
-          p.health+=
-            rnd(.1,.5);
-
-        }
+p.health=
+Math.max(
+0,
+Math.min(
+100,
+p.health
+)
+);
 
 
-        p.health=
-          Math.max(
-            0,
-            Math.min(
-              100,
-              p.health
-            )
-          );
+/* PARA */
 
+if(p.age>=18){
 
-        /*
-          PARA
-        */
-
-        if(p.age>=18){
-
-          p.money+=
-            Math.floor(
-              rnd(500,1300)
-            );
-
-        }
-
-
-        /*
-          HÜCRELER
-        */
-
-        p.cells*=
-          1-
-          (
-            p.age>70
-            ? .003
-            : .0003
-          );
-
-
-        /*
-          ÖLÜM
-        */
-
-        if(
-          p.age>90 ||
-          p.health<=0
-        ){
-
-          p.alive=false;
-
-          event(
-            `☠️ ${p.name} hayatını kaybetti.`
-          );
-
-        }
-
-      });
-
-
-    /*
-      İLİŞKİ
-    */
-
-    tryPair();
-
-
-    /*
-      DOĞUM
-    */
-
-    tryBirth();
-
-  }
-
-
-  event(
-    `⏩ Zaman ${n} yıl ilerledi.`
-  );
-
-
-  render();
-
-
-  saveWorld();
+p.money+=
+Math.floor(
+random(300,1000)
+);
 
 }
 
 
-/* =========================
-   KAYDET
-========================= */
+/* ÖLÜM */
 
-function saveWorld(){
+if(
+p.age>90 ||
+p.health<=0
+){
 
-  try{
+p.alive=false;
 
-    localStorage.setItem(
-      "yasayanDunya",
-      JSON.stringify(world)
-    );
+addEvent(
+"☠️ "+p.name+
+" hayatını kaybetti."
+);
 
-  }catch(e){
+}
 
-    console.log(
-      "Kayıt yapılamadı",
-      e
-    );
+});
 
-  }
+
+/* BİYOSFER */
+
+world.biosphere+=
+random(-.2,.2);
+
+world.biosphere=
+Math.max(
+0,
+Math.min(
+100,
+world.biosphere
+)
+);
 
 }
 
 
-/* =========================
-   BUTONLAR
-========================= */
+/* OLAY */
 
-document
-  .querySelectorAll("[data-y]")
-  .forEach(button=>{
-
-    button.onclick=()=>{
-
-      advance(
-        Number(
-          button.dataset.y
-        )
-      );
-
-    };
-
-  });
+addEvent(
+"⏩ Zaman "+
+years+
+" yıl ilerledi."
+);
 
 
-/* =========================
-   İLK ÇALIŞMA
-========================= */
-
-if(!world.events.length){
-
-  world.events=[
-    `${world.year}: 🌍 İlk 10 insan dünyaya yerleştirildi.`
-  ];
-
-}
-
+/* GÜNCELLE */
 
 render();
 
-saveWorld();
 
+/* KAYDET */
+
+save();
+
+}
+
+
+/* =========================
+   BAŞLAT
+========================= */
+
+load();
+
+render();
 
 </script>
 
