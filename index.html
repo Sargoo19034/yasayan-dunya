@@ -153,6 +153,7 @@ try{
     savedWorld=JSON.parse(data);
   }
 }catch(e){
+  localStorage.removeItem("yasayanDunya");
   savedWorld=null;
 }
 
