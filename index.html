@@ -145,10 +145,18 @@ const jobs=[
 "Esnaf"
 ];
 
-let world=JSON.parse(localStorage.getItem("yasayanDunya")) || {
-year:2026,
-biosphere:100,
-people:[]
+let savedWorld=null;
+
+try{
+  savedWorld=JSON.parse(localStorage.getItem("yasayanDunya"));
+}catch(e){
+  savedWorld=null;
+}
+
+let world=savedWorld || {
+  year:2026,
+  biosphere:100,
+  people:[]
 };
 
 function rnd(a,b){
