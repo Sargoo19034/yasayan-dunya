@@ -570,7 +570,185 @@ return p
 
 }
 
+/* =========================
+   İLİŞKİ SİSTEMİ
+========================= */
 
+function tryPair(){
+
+  const adults=world.people.filter(p=>
+    p.alive &&
+    p.age>=18 &&
+    !p.partner
+  );
+
+  const males=adults.filter(
+    p=>p.sex==="Erkek"
+  );
+
+  const females=adults.filter(
+    p=>p.sex==="Kadın"
+  );
+
+  if(!males.length || !females.length){
+    return;
+  }
+
+  if(Math.random()>0.25){
+    return;
+  }
+
+  const male=
+    males[Math.floor(Math.random()*males.length)];
+
+  const female=
+    females[Math.floor(Math.random()*females.length)];
+
+  male.partner=female.id;
+  female.partner=male.id;
+
+  addEvent(
+    `❤️ ${male.name} ve ${female.name} bir çift oldu.`
+  );
+}
+
+
+/* =========================
+   DOĞUM SİSTEMİ
+========================= */
+
+function tryBirth(){
+
+  const mothers=world.people.filter(p=>
+    p.alive &&
+    p.sex==="Kadın" &&
+    p.age>=20 &&
+    p.age<=40 &&
+    p.partner
+  );
+
+  if(!mothers.length){
+    return;
+  }
+
+  if(Math.random()>0.12){
+    return;
+  }
+
+  const mother=
+    mothers[Math.floor(Math.random()*mothers.length)];
+
+  const father=
+    world.people.find(
+      p=>p.id===mother.partner
+    );
+
+  if(!father || !father.alive){
+    return;
+  }
+
+  const babyNames=[
+    "Can","Kerem","Kaan","Bora",
+    "Alp","Derin","Lina","Ece",
+    "Naz","Mira","Deniz","Aras"
+  ];
+
+  const newId=
+    Math.max(
+      ...world.people.map(p=>p.id)
+    )+1;
+
+  const baby={
+
+    id:newId,
+
+    name:
+      babyNames[
+        Math.floor(
+          Math.random()*babyNames.length
+        )
+      ],
+
+    sex:
+      Math.random()<0.5
+      ?"Erkek"
+      :"Kadın",
+
+    age:0,
+
+    job:"Çocuk",
+
+    health:100,
+
+    energy:95,
+
+    hunger:5,
+
+    water:5,
+
+    money:0,
+
+    alive:true,
+
+    mother:mother.id,
+
+    father:father.id,
+
+    partner:null,
+
+    children:[],
+
+    generation:
+      Math.max(
+        mother.generation,
+        father.generation
+      )+1,
+
+    dna:{
+
+      eye:
+        Math.random()<0.5
+        ?mother.dna.eye
+        :father.dna.eye,
+
+      hair:
+        Math.random()<0.5
+        ?mother.dna.hair
+        :father.dna.hair,
+
+      resilience:
+        Math.round(
+          (
+            mother.dna.resilience+
+            father.dna.resilience
+          )/2+
+          random(-5,5)
+        ),
+
+      metabolism:
+        Math.round(
+          (
+            mother.dna.metabolism+
+            father.dna.metabolism
+          )/2+
+          random(-5,5)
+        )
+
+    }
+
+  };
+
+  world.people.push(baby);
+
+  mother.children.push(baby.id);
+
+  father.children.push(baby.id);
+
+  addEvent(
+    `👶 ${mother.name} ve ${father.name} çocuk sahibi oldu: ${baby.name}.`
+  );
+
+}
 /* =========================
    RENDER
 ========================= */
@@ -789,7 +967,8 @@ Math.min(
 world.biosphere
 )
 );
-
+tryPair();
+tryBirth();
 }
 
 
