@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yaşayan Dünya</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:#07111f;
+color:white;
+}
+
+header{
+padding:22px 18px;
+background:linear-gradient(135deg,#102d4f,#07111f);
+border-bottom:1px solid #24415f;
+}
+
+h1{margin:0;font-size:28px}
+
+.subtitle{
+color:#8fa8bf;
+margin-top:5px;
+}
+
+.container{
+padding:16px;
+max-width:900px;
+margin:auto;
+}
+
+.world{
+height:230px;
+border-radius:24px;
+background:radial-gradient(circle,#176baf,#06345c 60%,#020b14);
+display:flex;
+align-items:center;
+justify-content:center;
+margin-bottom:18px;
+position:relative;
+}
+
+.earth{
+width:150px;
+height:150px;
+border-radius:50%;
+background:
+radial-gradient(circle at 35% 30%,#5ee47b 0 10%,transparent 11%),
+radial-gradient(circle at 60% 60%,#35a85c 0 16%,transparent 17%),
+radial-gradient(circle at 40% 75%,#83c86b 0 10%,transparent 11%),
+linear-gradient(135deg,#1785d1,#075a9b);
+box-shadow:0 0 35px #42b9ff;
+}
+
+.year{
+position:absolute;
+bottom:15px;
+font-size:22px;
+font-weight:bold;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+
+.card{
+background:#0d1d30;
+border:1px solid #1d3853;
+border-radius:18px;
+padding:16px;
+}
+
+.icon{font-size:25px}
+
+.label{
+color:#8fa8bf;
+font-size:13px;
+margin-top:7px;
+}
+
+.value{
+font-size:23px;
+font-weight:bold;
+margin-top:4px;
+}
+
+.section{margin-top:18px}
+
+.section h2{font-size:19px}
+
+button{
+border:0;
+border-radius:14px;
+padding:14px 10px;
+font-size:15px;
+font-weight:700;
+color:white;
+background:#1769aa;
+}
+
+.buttons{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:9px;
+}
+
+.event{
+padding:12px;
+background:#101f31;
+border-radius:12px;
+margin-top:8px;
+color:#c7d7e7;
+}
+
+.footer{
+text-align:center;
+color:#657d94;
+padding:25px 0;
+font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🌍 Yaşayan Dünya</h1>
+<div class="subtitle">Kendi kendine gelişen sanal gezegen</div>
+</header>
+
+<div class="container">
+
+<div class="world">
+<div class="earth"></div>
+<div class="year" id="year">2026</div>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">👨‍👩‍👧</div>
+<div class="label">Nüfus</div>
+<div class="value" id="population">10</div>
+</div>
+
+<div class="card">
+<div class="icon">💰</div>
+<div class="label">Ekonomi</div>
+<div class="value" id="economy">1.00</div>
+</div>
+
+<div class="card">
+<div class="icon">⚙️</div>
+<div class="label">Teknoloji</div>
+<div class="value" id="technology">1.00</div>
+</div>
+
+<div class="card">
+<div class="icon">🌡️</div>
+<div class="label">Sıcaklık</div>
+<div class="value" id="temperature">14.80°C</div>
+</div>
+
+<div class="card">
+<div class="icon">🌱</div>
+<div class="label">Biyosfer</div>
+<div class="value" id="biosphere">100%</div>
+</div>
+
+<div class="card">
+<div class="icon">🚀</div>
+<div class="label">Uzay Çağı</div>
+<div class="value" id="space">0</div>
+</div>
+
+</div>
+
+<div class="section">
+<h2>⏩ Zamanı İlerlet</h2>
+
+<div class="buttons">
+<button onclick="advance(1)">+1 Yıl</button>
+<button onclick="advance(10)">+10 Yıl</button>
+<button onclick="advance(100)">+100 Yıl</button>
+</div>
+</div>
+
+<div class="section">
+<h2>🌎 Dünya Durumu</h2>
+
+<div class="event">🌊 Okyanuslar aktif</div>
+<div class="event">🌳 Ekosistemler gelişiyor</div>
+<div class="event">🧬 İnsan nesilleri devam ediyor</div>
+<div class="event">🛰️ Uzay araştırmaları başlangıç seviyesinde</div>
+</div>
+
+<div class="section">
+<h2>📜 Dünya Günlüğü</h2>
+<div id="log">
+<div class="event">2026 — Dünya simülasyonu başladı.</div>
+</div>
+</div>
+
+<div class="footer">
+Yaşayan Dünya • Simulation Engine v0.1
+</div>
+
+</div>
+
+<script>
+
+let world={
+year:2026,
+population:10,
+economy:1,
+technology:1,
+temperature:14.8,
+biosphere:100,
+space:0
+};
+
+function advance(years){
+
+world.year+=years;
+
+for(let i=0;i<years;i++){
+
+world.population=Math.floor(
+world.population+(world.population*0.012)
+);
+
+world.economy+=0.015;
+world.technology+=0.012;
+world.temperature+=0.002;
+world.biosphere-=0.003;
+
+if(world.biosphere<0)
+world.biosphere=0;
+
+if(world.technology>2)
+world.space+=0.001;
+}
+
+updateScreen();
+
+addLog(
+world.year+
+" — Dünya "+
+years+
+" yıl ilerledi."
+);
+}
+
+function updateScreen(){
+
+document.getElementById("year").innerText=
+world.year;
+
+document.getElementById("population").innerText=
+world.population;
+
+document.getElementById("economy").innerText=
+world.economy.toFixed(2);
+
+document.getElementById("technology").innerText=
+world.technology.toFixed(2);
+
+document.getElementById("temperature").innerText=
+world.temperature.toFixed(2)+"°C";
+
+document.getElementById("biosphere").innerText=
+world.biosphere.toFixed(1)+"%";
+
+document.getElementById("space").innerText=
+world.space.toFixed(2);
+}
+
+function addLog(text){
+
+let event=document.createElement("div");
+
+event.className="event";
+
+event.innerText=text;
+
+document.getElementById("log").prepend(event);
+}
+
+updateScreen();
+
+</script>
+
+</body>
+</html>
