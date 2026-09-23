@@ -437,17 +437,16 @@ ${p.dna.resilience}
 <br>
 
 👩 Anne:
-${p.mother ? getPerson(p.mother)?.name || "Bilinmiyor" : "—"}
+${p.mother ? `<button onclick="show(${p.mother})">${getPerson(p.mother)?.name || "Bilinmiyor"}</button>` : "—"}
 
 <br>
 
 👨 Baba:
-${p.father ? getPerson(p.father)?.name || "Bilinmiyor" : "—"}
-
+${p.father ? `<button onclick="show(${p.father})">${getPerson(p.father)?.name || "Bilinmiyor"}</button>` : "—"}
 <br>
 
 ❤️ Eş:
-${p.partner ? getPerson(p.partner)?.name || "Bilinmiyor" : "—"}
+${p.partner ? `<button onclick="show(${p.partner})">${getPerson(p.partner)?.name || "Bilinmiyor"}</button>` : "—"}
 
 <br>
 
@@ -458,7 +457,7 @@ ${p.generation}
 
 👶 Çocuklar:
 ${p.children.length
-  ? p.children.map(id=>getPerson(id)?.name).filter(Boolean).join(", ")
+  ? p.children.map(id=>'<button onclick="show('+id+')">'+(getPerson(id)?.name || "Bilinmiyor")+'</button>').join(", ")
   : "—"}
 
 <br>
