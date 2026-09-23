@@ -225,7 +225,7 @@ function tryPair(){
   const females=adults.filter(p=>p.sex==="Kadın");
 
   if(!males.length || !females.length) return;
-  if(Math.random()>0.80) return;
+  if(Math.random()>1) return;
 
   const m=males[Math.floor(Math.random()*males.length)];
   const f=females[Math.floor(Math.random()*females.length)];
@@ -259,7 +259,7 @@ function tryBirth(){
   );
 
   if(!mothers.length) return;
-  if(Math.random()>0.50) return;
+  if(Math.random()>1) return;
 
   const mother=mothers[Math.floor(Math.random()*mothers.length)];
   const father=getPerson(mother.partner);
