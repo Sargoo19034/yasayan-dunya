@@ -498,7 +498,9 @@ ${p.dna.metabolism}
 ${
 p.mother
 ?
-getName(p.mother)
+`<button onclick="showPerson(${p.mother})">
+${getName(p.mother)}
+</button>`
 :
 "—"
 }
@@ -509,7 +511,9 @@ getName(p.mother)
 ${
 p.father
 ?
-getName(p.father)
+`<button onclick="showPerson(${p.father})">
+${getName(p.father)}
+</button>`
 :
 "—"
 }
@@ -520,7 +524,9 @@ getName(p.father)
 ${
 p.partner
 ?
-getName(p.partner)
+`<button onclick="showPerson(${p.partner})">
+${getName(p.partner)}
+</button>`
 :
 "—"
 }
@@ -532,24 +538,18 @@ ${p.generation}
 
 <br>
 
-👶 Çocuk sayısı:
-${p.children.length}
+👶 Çocuklar:
 
-<div class="bar">
-
-<span style="
-width:${Math.max(
-0,
-Math.min(100,p.health)
-)}%
-"></span>
-
-</div>
-
-</div>
-
-`;
-
+${
+p.children.length
+?
+p.children.map(id=>
+`<button onclick="showPerson(${id})">
+${getName(id)}
+</button>`
+).join(" ")
+:
+"—"
 }
 
 
