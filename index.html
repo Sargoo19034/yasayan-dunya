@@ -148,7 +148,10 @@ const jobs=[
 let savedWorld=null;
 
 try{
-  savedWorld=JSON.parse(localStorage.getItem("yasayanDunya"));
+  const data=localStorage.getItem("yasayanDunya");
+  if(data){
+    savedWorld=JSON.parse(data);
+  }
 }catch(e){
   savedWorld=null;
 }
