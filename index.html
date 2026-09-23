@@ -430,7 +430,38 @@ ${p.dna.metabolism}
 
 🛡️ Dayanıklılık:
 ${p.dna.resilience}
+<hr style="border-color:#173149;border-width:1px 0 0">
 
+👨‍👩‍👧 <b>Aile</b>
+
+<br>
+
+👩 Anne:
+${p.mother ? getPerson(p.mother)?.name || "Bilinmiyor" : "—"}
+
+<br>
+
+👨 Baba:
+${p.father ? getPerson(p.father)?.name || "Bilinmiyor" : "—"}
+
+<br>
+
+❤️ Eş:
+${p.partner ? getPerson(p.partner)?.name || "Bilinmiyor" : "—"}
+
+<br>
+
+🧬 Nesil:
+${p.generation}
+
+<br>
+
+👶 Çocuklar:
+${p.children.length
+  ? p.children.map(id=>getPerson(id)?.name).filter(Boolean).join(", ")
+  : "—"}
+
+<br>
 <div class="bar">
 
 <span style="width:${Math.max(
