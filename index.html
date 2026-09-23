@@ -314,7 +314,7 @@ function tryBirth(){
 function render(){
 
 document.getElementById("year").textContent=world.year;
-localStorage.setItem("yasayanDunya",JSON.stringify(world));
+
 document.getElementById("pop").textContent=
 world.people.filter(p=>p.alive).length;
 
