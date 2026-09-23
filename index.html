@@ -145,7 +145,7 @@ const jobs=[
 "Esnaf"
 ];
 
-let world={
+let world=JSON.parse(localStorage.getItem("yasayanDunya")) || {
 year:2026,
 biosphere:100,
 people:[]
@@ -207,7 +207,9 @@ alive:true
 
 }
 
-world.people=firstNames.map((_,i)=>person(i));
+if(!world.people.length){
+  world.people=firstNames.map((_,i)=>person(i));
+}
 let nextId=11;
 
 function getPerson(id){
