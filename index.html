@@ -208,7 +208,107 @@ alive:true
 }
 
 world.people=firstNames.map((_,i)=>person(i));
+let nextId=11;
 
+function getPerson(id){
+  return world.people.find(p=>p.id===id);
+}
+
+function tryPair(){
+  const adults=world.people.filter(p=>
+    p.alive &&
+    p.age>=18 &&
+    !p.partner
+  );
+
+  const males=adults.filter(p=>p.sex==="Erkek");
+  const females=adults.filter(p=>p.sex==="Kadın");
+
+  if(!males.length || !females.length) return;
+  if(Math.random()>0.25) return;
+
+  const m=males[Math.floor(Math.random()*males.length)];
+  const f=females[Math.floor(Math.random()*females.length)];
+
+  m.partner=f.id;
+  f.partner=m.id;
+
+  event(`❤️ ${m.name} ve ${f.name} bir çift oldu.`);
+}
+
+function childDNA(mother,father){
+  return {
+    eye:Math.random()<0.5 ? mother.dna.eye : father.dna.eye,
+    hair:Math.random()<0.5 ? mother.dna.hair : father.dna.hair,
+    resilience:Math.round(
+      (mother.dna.resilience+father.dna.resilience)/2+rnd(-5,5)
+    ),
+    metabolism:Math.round(
+      (mother.dna.metabolism+father.dna.metabolism)/2+rnd(-5,5)
+    )
+  };
+}
+
+function tryBirth(){
+  const mothers=world.people.filter(p=>
+    p.alive &&
+    p.sex==="Kadın" &&
+    p.age>=20 &&
+    p.age<=40 &&
+    p.partner
+  );
+
+  if(!mothers.length) return;
+  if(Math.random()>0.15) return;
+
+  const mother=mothers[Math.floor(Math.random()*mothers.length)];
+  const father=getPerson(mother.partner);
+
+  if(!father || !father.alive || father.sex!=="Erkek") return;
+
+  const names=[
+    "Can","Kerem","Kaan","Bora","Alp",
+    "Derin","Lina","Ece","Naz","Mira"
+  ];
+
+  const child={
+    id:nextId++,
+    name:names[Math.floor(Math.random()*names.length)],
+    sex:Math.random()<0.5?"Erkek":"Kadın",
+    age:0,
+    job:"Çocuk",
+    money:0,
+    health:100,
+    hunger:rnd(5,15),
+    water:rnd(5,15),
+    energy:rnd(80,100),
+
+    dna:childDNA(mother,father),
+
+    cells:1e13,
+    memories:[],
+
+    mother:mother.id,
+    father:father.id,
+    partner:null,
+    children:[],
+    generation:Math.max(
+      mother.generation,
+      father.generation
+    )+1,
+
+    alive:true
+  };
+
+  world.people.push(child);
+
+  mother.children.push(child.id);
+  father.children.push(child.id);
+
+  event(
+    `👶 ${mother.name} ve ${father.name} bir çocuk sahibi oldu: ${child.name}.`
+  );
+}
 function render(){
 
 document.getElementById("year").textContent=world.year;
