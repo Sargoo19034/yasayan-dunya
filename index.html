@@ -145,19 +145,7 @@ const jobs=[
 "Esnaf"
 ];
 
-let savedWorld=null;
-
-try{
-  const data=localStorage.getItem("yasayanDunya");
-  if(data){
-    savedWorld=JSON.parse(data);
-  }
-}catch(e){
-  localStorage.removeItem("yasayanDunya");
-  savedWorld=null;
-}
-
-let world=savedWorld || {
+let world={
   year:2026,
   biosphere:100,
   people:[]
